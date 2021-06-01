@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "prettier": "2.2.1",
+    "serverless-s3-deploy": "^0.10.0",
     "serverless-stack-output": "^0.2.3"
   },
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",

@@ -11,8 +11,18 @@ const serverlessConfiguration: AWS = {
       handler: "scripts/serverless-output.handler",
       file: ".build/serverless-output.json",
     },
+    assets: {
+      // auto: true,
+      // verbose: true,
+      targets: [
+        {
+          bucket: { Ref: ServerlessConstants.ResourceNames.S3Bucket },
+          files: [{ source: "public/", globs: ["**/*"] }],
+        },
+      ],
+    },
   },
-  plugins: ["serverless-stack-output"],
+  plugins: ["serverless-stack-output", "serverless-s3-deploy"],
   provider: {
     name: "aws",
     runtime: "nodejs14.x",
@@ -24,17 +34,6 @@ const serverlessConfiguration: AWS = {
     lambdaHashingVersion: "20201221",
   },
   resources: {
-    // Resources: {
-    //   [ServerlessConstants.Resources.BucketName]: resources.S3BucketResource,
-    //   [ServerlessConstants.Resources.PolicyName]:
-    //     resources.StaticSiteS3BucketPolicy,
-    //   [ServerlessConstants.Resources.CertName]: resources.StaticSiteCert,
-    //   [ServerlessConstants.Resources.CloudFrontName]:
-    //     resources.CloudFrontDistribution,
-    //   [ServerlessConstants.Resources.DnsResourceName]:
-    //     resources.DnsRecordResource,
-    // },
-    // Outputs: resources.Outputs,
     Resources: {
       [ServerlessConstants.ResourceNames.CloudFrontDistribution]:
         resources.CloudFront,
