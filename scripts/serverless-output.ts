@@ -18,15 +18,7 @@ export const handler = (data: Outputs, _serverless, _options) => {
 // Most of these outputs are controlled by Serverless Framework
 // But we can specify outputs in the `resources` section of `serverless.ts`
 export interface Outputs {
-  VerifyAuthChallengeResponseLambdaFunctionQualifiedArn: string
-  UserPoolClientId: string
-  UserPoolId: string
-  ExampleLambdaFunctionQualifiedArn: string
-  DefineAuthChallengeLambdaFunctionQualifiedArn: string
-  PreSignUpLambdaFunctionQualifiedArn: string
-  PostAuthenticationLambdaFunctionQualifiedArn: string
-  HttpApiId: string
-  CreateAuthChallengeLambdaFunctionQualifiedArn: string
+  CloudFrontDistribution: string
+  S3Bucket: string
   ServerlessDeploymentBucketName: string
-  HttpApiUrl: string
 }
