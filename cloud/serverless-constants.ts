@@ -13,6 +13,8 @@ export const ServerlessConstants = {
   },
   ResourceNames: {
     S3Bucket: "S3Bucket",
+    S3OriginAccessIdentity: "S3OriginAccessIdentity",
+    S3BucketPolicy: "S3BucketPolicy",
     CertificateManagerCertificate: "CertificateManagerCertificate",
     CloudFrontDistribution: "CloudFrontDistribution",
   },

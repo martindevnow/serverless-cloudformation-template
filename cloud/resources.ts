@@ -1,31 +1,69 @@
 import {
   AWS_CertificateManager_Certificate,
+  AWS_CloudFront_CloudFrontOriginAccessIdentity,
   // AWS_CloudFront_Distribution,
   AWS_S3_Bucket,
+  // AWS_S3_BucketPolicy,
 } from "./aws.types"
 import ServerlessConstants from "./serverless-constants"
 
-// Use a CNAME to point your domain to cloudfront address...
+export const S3OriginAccessIdentity: AWS_CloudFront_CloudFrontOriginAccessIdentity = {
+  Type: "AWS::CloudFront::CloudFrontOriginAccessIdentity",
+  Properties: {
+    CloudFrontOriginAccessIdentityConfig: {
+      Comment: "Yamenai S3 CloudFront OAI",
+    },
+  },
+}
 
-export const CloudFront /*: AWS_CloudFront_Distribution */ = {
+export const S3BucketPolicy /* : AWS_S3_BucketPolicy */ = {
+  Type: "AWS::S3::BucketPolicy",
+  Properties: {
+    // Bucket: `{Ref: ServerlessConstants.ResourceNames.S3Bucket}`,
+    Bucket: { Ref: ServerlessConstants.ResourceNames.S3Bucket },
+    PolicyDocument: {
+      Statement: [
+        {
+          Action: "s3:Get*",
+          Effect: "Allow",
+          Resource: `arn:aws:s3:::${ServerlessConstants.Resources.S3BucketName}/*`,
+          Principal: {
+            // CanonicalUser: `{"Fn::GetAtt": [ServerlessConstants.ResourceNames.S3OriginAccessIdentity, "S3CanonicalUserId"]}`,
+            CanonicalUser: {
+              "Fn::GetAtt": [
+                ServerlessConstants.ResourceNames.S3OriginAccessIdentity,
+                "S3CanonicalUserId",
+              ],
+            },
+          },
+        },
+      ],
+    },
+  },
+}
+
+export const CloudFront /* : AWS_CloudFront_Distribution */ = {
   Type: "AWS::CloudFront::Distribution",
   Properties: {
     DistributionConfig: {
-      Aliases: ServerlessConstants.Hosting.Aliases,
+      Aliases: [...ServerlessConstants.Hosting.Aliases],
       Origins: [
         {
-          DomainName: `${ServerlessConstants.Resources.S3BucketName}.s3-website-${ServerlessConstants.region}.amazonaws.com`,
           Id: `${ServerlessConstants.Resources.S3BucketName}.s3`,
-          OriginPath: "",
-          ConnectionAttempts: 3,
-          ConnectionTimeout: 10,
-          CustomOriginConfig: {
-            HTTPPort: 80,
-            HTTPSPort: 443,
-            OriginKeepaliveTimeout: 5,
-            OriginProtocolPolicy: "http-only",
-            OriginReadTimeout: 30,
-            OriginSSLProtocols: ["TLSv1", "TLSv1.1", "TLSv1.2"],
+          DomainName: `${ServerlessConstants.Resources.S3BucketName}.s3.amazonaws.com`,
+          S3OriginConfig: {
+            OriginAccessIdentity: {
+              "Fn::Join": [
+                "",
+                [
+                  "origin-access-identity/cloudfront/",
+                  {
+                    Ref:
+                      ServerlessConstants.ResourceNames.S3OriginAccessIdentity,
+                  },
+                ],
+              ],
+            },
           },
         },
       ],

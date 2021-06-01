@@ -38,6 +38,10 @@ const serverlessConfiguration: AWS = {
       [ServerlessConstants.ResourceNames.CloudFrontDistribution]:
         resources.CloudFront,
       [ServerlessConstants.ResourceNames.S3Bucket]: resources.S3Bucket,
+      [ServerlessConstants.ResourceNames.S3BucketPolicy]:
+        resources.S3BucketPolicy,
+      [ServerlessConstants.ResourceNames.S3OriginAccessIdentity]:
+        resources.S3OriginAccessIdentity,
       [ServerlessConstants.ResourceNames.CertificateManagerCertificate]:
         resources.CertificateManagerCertificate,
     },
