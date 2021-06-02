@@ -88,7 +88,7 @@ export const CloudFront /* : AWS_CloudFront_Distribution */ = {
         ViewerProtocolPolicy: "redirect-to-https",
       },
       Comment: "Yamenai Website",
-      PriceClass: "PriceClass_All",
+      PriceClass: "PriceClass_100",
       Enabled: true,
       ViewerCertificate: {
         AcmCertificateArn: {

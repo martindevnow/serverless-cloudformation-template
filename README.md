@@ -19,6 +19,12 @@ STAGE=dev/test/stage/prod/live # etc
 
 Your domain name will need to have a CNAME record to point any domain or subdomains to this cloudfront url. The cloudfront URL is available in the CloudFront console.
 
+## Pricing:
+
+### Price Class
+
+https://aws.amazon.com/cloudfront/pricing/
+
 ## TODO:
 
 - [ ] Optionally attach lambda functions as CloudFront Functions (new)
