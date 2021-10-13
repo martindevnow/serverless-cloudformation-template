@@ -12,13 +12,18 @@
  */
 export const handler = (data: Outputs, _serverless, _options) => {
   // Do something in CI here if you want
-  console.log("Received Stack Output", data)
-}
+  console.log("Received Stack Output", data);
+};
 
 // Most of these outputs are controlled by Serverless Framework
 // But we can specify outputs in the `resources` section of `serverless.ts`
 export interface Outputs {
-  CloudFrontDistribution: string
-  S3Bucket: string
-  ServerlessDeploymentBucketName: string
+  SHCFDomain: string;
+  SHCFDistributionId: string;
+  SHWebsiteUrl: string;
+  SHS3BucketSecureUrl: string;
+  SHS3BucketName: string;
+  GCAccessKey: string;
+  GCSecretAccessKey: string;
+  ServerlessDeploymentBucketName: string;
 }

@@ -7,6 +7,6 @@ export const hander = event => {
         value: "https://yamenai.com" + event.request.uri,
       },
     },
-  }
-  return response
-}
+  };
+  return response;
+};

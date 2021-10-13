@@ -1,61 +1,26 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "serverless-cloudfront-template",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "A static site hosting platform IasC",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Ben Martin <the.one.martin@gmail.com>",
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
-  "dependencies": {
-    "@serverless/typescript": "^2.43.1",
-    "gatsby": "^3.4.1",
-    "gatsby-plugin-feed": "^3.4.0",
-    "gatsby-plugin-gatsby-cloud": "^2.4.1",
-    "gatsby-plugin-google-analytics": "^3.4.0",
-    "gatsby-plugin-image": "^1.4.0",
-    "gatsby-plugin-manifest": "^3.4.0",
-    "gatsby-plugin-offline": "^4.4.0",
-    "gatsby-plugin-react-helmet": "^4.4.0",
-    "gatsby-plugin-sharp": "^3.4.1",
-    "gatsby-remark-copy-linked-files": "^3.2.0",
-    "gatsby-remark-images": "^4.2.0",
-    "gatsby-remark-prismjs": "^4.2.0",
-    "gatsby-remark-responsive-iframe": "^3.2.0",
-    "gatsby-remark-smartypants": "^3.2.0",
-    "gatsby-source-filesystem": "^3.4.0",
-    "gatsby-transformer-remark": "^3.2.0",
-    "gatsby-transformer-sharp": "^3.4.0",
-    "prismjs": "^1.23.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0",
-    "typeface-merriweather": "0.0.72",
-    "typeface-montserrat": "0.0.75"
-  },
-  "devDependencies": {
-    "prettier": "2.2.1",
-    "serverless-s3-deploy": "^0.10.0",
-    "serverless-stack-output": "^0.2.3"
-  },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "0BSD",
-  "main": "n/a",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
-  },
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
     "deploy": "sls deploy && sls s3deploy",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
-  }
+    "test": "echo \"Write tests!\" && exit 1"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@serverless/typescript": "^2.43.1",
+    "@types/node": "^16.10.8",
+    "prettier": "2.2.1",
+    "serverless": "^2.62.0",
+    "serverless-s3-deploy": "^0.10.0",
+    "serverless-stack-output": "^0.2.3",
+    "typescript": "^4.4.4"
+  },
+  "main": "n/a"
 }

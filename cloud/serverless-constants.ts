@@ -3,28 +3,55 @@ const globals = {
   stage: process.env.STAGE || "dev",
   project: "blogstarter",
   region: "us-east-1",
-} as const
+  domain: "yamenai.com",
+} as const;
 
 export const ServerlessConstants = {
-  region: globals.region,
-  client: globals.client,
-  Resources: {
-    S3BucketName: `yamenai-website-${globals.stage}`,
+  ...globals,
+  GatsbyCloud: {
+    Name: {
+      Policy: "GatsbyCloudDeployPolicy",
+    },
+    Logical: {
+      User: "GCUser",
+      Policy: "GCPolicy",
+      AccessKey: "GCAccessKey",
+    },
+    Outputs: {
+      AccessKey: "GCAccessKey",
+      SecretAccessKey: "GCSecretAccessKey",
+    },
   },
-  ResourceNames: {
-    S3Bucket: "S3Bucket",
-    S3OriginAccessIdentity: "S3OriginAccessIdentity",
-    S3BucketPolicy: "S3BucketPolicy",
-    CertificateManagerCertificate: "CertificateManagerCertificate",
-    CloudFrontDistribution: "CloudFrontDistribution",
+  StaticHosting: {
+    Names: {
+      S3Bucket: `${globals.project}-${globals.stage}`,
+    },
+    Logical: {
+      S3Bucket: "SHS3Bucket",
+      S3OriginAccessIdentity: "SHS3OriginAccessIdentity",
+      S3CloudFrontBucketPolicy: "SHS3CloudFrontBucketPolicy",
+      S3PublicReadBucketPolicy: "SHS3PublicReadBucketPolicy",
+      CertificateManagerCertificate: "SHCertificateManagerCertificate",
+      CloudFrontDistribution: "SHCloudFrontDistribution",
+      BasicAuthLambda: "SHBasicAuthLambda",
+    },
+    Options: {
+      DomainName: globals.domain,
+      // These are the Domains we want to accept connections from
+      // (i.e. mydomain.com, www.mydomain.com, etc..)
+      Aliases: [globals.domain, `en.${globals.domain}`, `fr.${globals.domain}`],
+      WildCardDomain: `*.${globals.domain}`,
+      // WithSSL: false,
+      // WithPrivateBucket: false,
+    },
+    Outputs: {
+      CFDomainName: "SHCFDomain",
+      CFDistributionId: "SHCFDistributionId",
+      WebsiteUrl: "SHWebsiteUrl",
+      S3BucketSecureUrl: "SHS3BucketSecureUrl",
+      S3BucketName: "SHS3BucketName",
+    },
   },
-  Hosting: {
-    DomainName: "yamenai.com",
-    // These are the Domains we want to accept connections from
-    // (i.e. mydomain.com, www.mydomain.com, etc..)
-    Aliases: ["yamenai.com", "www.yamenai.com", "www2.yamenai.com"],
-    WildCardDomain: "*.yamenai.com",
-  },
-} as const
+} as const;
 
-export default ServerlessConstants
+export default ServerlessConstants;

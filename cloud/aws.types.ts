@@ -5023,8 +5023,7 @@ export interface PredefinedScalingMetricSpecification {
   PredefinedScalingMetricType: string;
 }
 
-export type AWS_SageMaker_ModelExplainabilityJobDefinition____Environment =
-  undefined;
+export type AWS_SageMaker_ModelExplainabilityJobDefinition____Environment = undefined;
 
 export interface BackupPlanResourceType {
   BackupPlanName: string;
@@ -5102,8 +5101,7 @@ export interface BatchRestrictions {
   MaximumBuildsAllowed?: number;
 }
 
-export type AdditionalAuthenticationProviders =
-  AdditionalAuthenticationProvider[];
+export type AdditionalAuthenticationProviders = AdditionalAuthenticationProvider[];
 
 export interface AWS_GameLift_Script____S3Location {
   ObjectVersion?: string;
