@@ -43,6 +43,8 @@ export const ServerlessConstants = {
       WildCardDomain: `*.${globals.domain}`,
       // WithSSL: false,
       // WithPrivateBucket: false,
+      AuthUser: "yamenai",
+      AuthPass: "tomaru",
     },
     Outputs: {
       CFDomainName: "SHCFDomain",

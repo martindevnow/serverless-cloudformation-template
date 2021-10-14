@@ -1,12 +1,13 @@
-"use strict";
-exports.handler = (event, context, callback) => {
+import ServerlessConstants from "../serverless-constants";
+
+exports.handler = (event, _context, callback) => {
   // Get request and request headers
   const request = event.Records[0].cf.request;
   const headers = request.headers;
 
   // Configure authentication
-  const authUser = "thrillworks";
-  const authPass = "n3v3rN0t";
+  const authUser = ServerlessConstants.StaticHosting.Options.AuthUser;
+  const authPass = ServerlessConstants.StaticHosting.Options.AuthPass;
 
   // Construct the Basic Auth string
   const authString =

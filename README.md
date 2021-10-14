@@ -33,3 +33,17 @@ https://aws.amazon.com/cloudfront/pricing/
 - [ ] Add the option to add basic auth (username / password ) to the website
 - [ ] Make custom auth configurable
 - [ ] Make `domain`, `bucketName` etc configurable
+
+# Inspirations
+
+This project was inspired by my recent work with Gatsby, JAM stack and SSG.
+
+## Resources
+
+- https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/deploying-to-s3-cloudfront/
+
+- https://www.ximedes.com/2018-04-23/deploying-gatsby-on-s3-and-cloudfront/
+
+- https://aws.amazon.com/blogs/aws/introducing-cloudfront-functions-run-your-code-at-the-edge-with-low-latency-at-any-scale/
+
+- https://github.com/aws-samples/amazon-cloudfront-functions
